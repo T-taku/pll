@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap');
+
+header {
+  width: 100%;
+  padding: 10px 0;
+  height: 50px;
+  box-sizing: border-box;
+  background-color: #fff;
+  user-select: none;
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  border-bottom: solid 1px #e6e6e6;
+}
+header h1 {
+  font-family: 'Alegreya Sans SC', sans-serif;
+  font-weight: normal;
+  color: #000;
+  position: absolute;
+  top: 5px;
+  left: 15px;
+  margin: 0;
+}
+#sidebar {
+  width: 230px;
+  height: 100vh;
+  background-color: #f2f3f5;
+  position: fixed;
+  padding-top: 80px;
+  top: 50px;
+  left: 0;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  user-select: none;
+}
+#sidebar::-webkit-scrollbar {
+  width: 5px;
+  border-left: solid 1px #e6e6e6;
+}
+#sidebar::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+	background:#ccc;
+}
+#sidebar ul {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 100px;
+  margin-top: -50px;
+}
+#sidebar li {
+  list-style: none;
+}
+#sidebar a {
+  display: block;
+  padding-left: 15px;
+  line-height: 40px;
+  text-decoration: none;
+  color: #333;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 20px;
+}
+#sidebar a:hover {
+  background-color: #ebedf0;
+}
+#sidebar h2 {
+  font-family: 'Alegreya Sans SC', sans-serif;
+  font-weight: normal;
+  padding: 5px 20px;
+  border-top: solid 1px #ccc;
+  border-bottom: solid 1px #ccc;
+  margin-bottom: 10px;
+}
+
+
+main {
+  margin: 100px 5%;
+  margin-left: calc(230px + 5%);
+}
+main h1 {
+  font-weight: 300;
+  font-family: source-han-sans-japanese, sans-serif;
+  font-size: 40px;
+  border-bottom: solid 1px #ddd;
+  margin: 0;
+}
+main h2 {
+  font-weight: 200;
+  font-family: source-han-sans-japanese, sans-serif;
+  font-size: 25px;
+  margin: 0;
+}
+
+#analytics, #draft {
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px #ddd;
+  margin-top: 50px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
