@@ -1,0 +1,525 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap');
+
+header {
+  width: 100%;
+  padding: 10px 0;
+  box-sizing: border-box;
+  background-color: #000;
+  user-select: none;
+  z-index: 11;
+  position: fixed;
+  top: 0;
+  border-bottom: solid 1px #555;
+}
+header img {
+  width: 200px;
+  margin-left: 15px;
+}
+#headTag {
+  padding: 0;
+  margin-bottom: 0;
+  position: absolute;
+  top: 20px;
+  left: 250px;
+  width: 100%;
+  display: flex;
+  list-style: none;
+}
+#headTag a {
+  text-decoration: none;
+  color: white;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 17px;
+  transition: 0.3s;
+  border-right: solid 1px #ddd;
+  padding: 3px 15px 4px 15px;
+}
+#headTag li {
+  display: inline;
+  margin: 0;
+}
+#headTag li:last-child a {
+  border-right: none;
+}
+#headTag a:hover {
+  color: #000;
+  background-color: #fff;
+}
+#headLink {
+  position: absolute;
+  top: 0px;
+  right: 20px;
+}
+#headLink a {
+  font-size: 30px;
+  color: #fff;
+  margin: 0 5px;
+  transition: 0.3s;
+}
+#headLink a:hover {
+  color: #ccc;
+}
+#button {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  display: none;
+}
+#button span {
+  background-color: #fff;
+  width: 100%;
+  height: 4px;
+  display: block;
+  border-radius: 3px;
+  transition: 0.3s;
+}
+#button span:nth-child(2), #button span:nth-child(3) {
+  content: "";
+  background-color: #fff;
+  width: 100%;
+  height: 4px;
+  display: block;
+  border-radius: 3px;
+  transition: 0.3s;
+  position: absolute;
+  top: 15px;
+}
+#button span:nth-child(3) {
+  transform: rotate(180deg);
+}
+#button span:nth-child(1) {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+#button span:nth-child(4) {
+  position: absolute;
+  left: 0;
+  top: 30px;
+}
+#button.active span:nth-child(1) {
+  width: 0;
+}
+#button.active span:nth-child(4) {
+  width: 0;
+}
+#button.active span:nth-child(2) {
+  transform: rotate(135deg);
+}
+#button.active span:nth-child(3) {
+  transform: rotate(225deg);
+}
+#back {
+  width: 100%;
+  height: 100vh;
+  background-color: #000000aa;
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  pointer-events: none;
+  display: none;
+}
+#mobile {
+  padding: 0;
+  list-style: none;
+  position: fixed;
+  z-index: 11;
+  height: calc(100vh - 74px);
+  margin: auto 0;
+  width: 100%;
+  display: none;
+}
+#mobile li {
+  opacity: 0;
+}
+#mobile a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 30px;
+  font-family: 'Quicksand', sans-serif;
+  line-height: 45px;
+  text-align: center;
+  display: block;
+}
+
+
+main {
+  width: 90%;
+  margin: 100px 5%;
+  font-family: source-han-sans-japanese, sans-serif;
+}
+main h1 {
+  font-weight: bold;
+  font-size: 40px;
+  text-align: center;
+}
+main p {
+  font-size: 15px;
+  font-weight: 200;
+  text-align: center;
+}
+
+#input span {
+  font-size: 15px;
+  font-weight: 200;
+}
+#input span::after {
+  content: "必須";
+  color: #f00;
+  margin-left: 5px;
+  font-size: 11px;
+}
+#input {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 50px;
+}
+#input tr {
+  border: solid 1px #ddd;
+}
+#input td {
+  position: relative;
+}
+#input p {
+  top: 15px;
+  right: 30px;
+  color: #f00;
+  position: absolute;
+  pointer-events: none;
+  display: none;
+}
+#input td:first-child {
+  width: 30%;
+  margin-left: 15px;
+  padding: 0 10px;
+}
+#input input, #input textarea, #input select {
+  width: calc(100% - 15px);
+  box-sizing: border-box;
+  border: solid 1px #aaa;
+  outline: none;
+  margin: 15px 0;
+  resize: none;
+  padding: 0 10px;
+  font-family: source-han-sans-japanese, sans-serif;
+  font-weight: 200;
+}
+#input input {
+  height: 50px;
+  font-size: 18px;
+}
+#input textarea {
+  padding: 10px 10px;
+  height: 200px;
+  font-size: 16px;
+}
+#input textarea::placeholder {
+  font-family: source-han-sans-japanese, sans-serif;
+  font-size: 15px;
+}
+#input select {
+  height: 50px;
+  width: 300px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: relative;
+  background: none;
+  font-size: 16px;
+  color: #000;
+  margin-top: 2px;
+}
+#input select::-ms-expand {
+  display: none;
+}
+#input tr:nth-child(3) td:last-child {
+  font-weight: 200;
+  font-size: 13px;
+  color: #f00;
+}
+#input label {
+  position: relative;
+}
+#input label::before {
+  content: "";
+  position: absolute;
+  right: 15px;
+  top: calc(50% - 2px);
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 7px 0 7px;
+  border-color: #000 transparent transparent transparent;
+}
+
+
+#confirm {
+  text-align: center;
+}
+#confirm a {
+  margin-right: 5px;
+  color: #007ed7;
+  text-decoration: none;
+}
+#confirm a:hover {
+  text-decoration: underline;
+}
+
+#check, #send, #undo {
+  width: 250px;
+  text-align: center;
+  font-size: 20px;
+  padding: 20px 0 21px 0;
+  background-color: #000;
+  color: #fff;
+  border: solid 1px #000;
+  box-sizing: border-box;
+  cursor: pointer;
+  margin: 20px auto;
+  user-select: none;
+  transition: .3s;
+  display: block;
+}
+#check:hover, #send:hover, #undo:hover {
+  background-color: #fff;
+  color: #000;
+}
+#confirmButtons {
+  display: none;
+}
+#buttons {
+  justify-content: center;
+  display: flex;
+}
+#undo, #send {
+  margin: 20px 0;
+  outline: none;
+}
+#undo {
+  margin-right: 20px;
+}
+
+
+#preview {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 50px;
+  display: none;
+}
+#preview tr {
+  border: solid 1px #ddd;
+  font-weight: 200;
+  font-size: 18px;
+}
+#preview td {
+  height: 70px;
+  padding: 15px 0;
+  box-sizing: border-box;
+}
+#preview td:first-child {
+  width: 30%;
+  padding: 0 10px;
+  vertical-align: top;
+  padding-top: 20px;
+}
+#prevContent {
+  white-space: pre-wrap;
+}
+#preview caption {
+  border: solid 1px #ddd;
+  border-bottom: none;
+  font-size: 15px;
+  font-weight: 200;
+  text-align: left;
+  padding: 20px 15px;
+  line-height: 24px;
+}
+#preview caption span {
+  font-weight: bold;
+}
+
+
+footer {
+  width: 100%;
+  background-color: #000;
+  box-sizing: border-box;
+  padding: 50px 5% 10px 5%;
+  margin-top: 100px;
+}
+footer h2 {
+  text-align: center;
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 50px;
+  font-weight: 700;
+}
+footer div:first-child {
+  width: 15%;
+  display: block;
+  margin: 0 auto;
+}
+footer div:nth-child(2) {
+  width: 25%;
+  display: block;
+  margin: 20px auto;
+}
+footer img {
+  width: 100%;
+}
+footer ul {
+  padding: 0;
+  margin: 0;
+  width: 32%;
+  box-sizing: border-box;
+}
+#links {
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+}
+footer ul:nth-child(2) {
+  margin: 0 2%;
+}
+footer li {
+  list-style: none;
+  font-family: source-han-sans-japanese, sans-serif;
+  font-weight: 100;
+}
+footer li:first-child {
+  font-size: 40px;
+  font-family: 'Quicksand', sans-serif;
+  border-bottom: solid 1px #aaa;
+  margin-bottom: 20px;
+  color: #fff;
+}
+footer a {
+  text-decoration: none;
+  color: #ddd;
+  font-size: 17px;
+  display: block;
+  padding: 5px 0;
+}
+footer a:hover {
+  color: #bbb;
+  text-decoration: underline;
+}
+footer small {
+  display: block;
+  text-align: center;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 16px;
+  margin-top: 20px;
+  color: #ddd;
+}
+
+#scrollTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 500;
+  padding: 50px30px;
+  display: none;
+}
+#scrollTop:hover {
+  cursor: pointer;
+}
+#scrollTop i {
+  font-size: 30px;
+  display: block;
+  color: #000;
+}
+#scrollTop i:first-child {
+  position: relative;
+  top: 10px;
+}
+
+@media (min-width: 1920px) {
+  footer div:first-child a {
+    width: 10%;
+  }
+  footer div:nth-child(2) {
+    width: 20%;
+  }
+}
+
+@media (min-width: 1800px) {
+  footer div:first-child a {
+    width: 10%;
+  }
+}
+
+@media (max-width: 1050px) {
+  main {
+    width: 90%;
+    margin: 100px 5%;
+  }
+  #headTag, #headLink {
+    display: none;
+  }
+  #button {
+    display: block;
+  }
+}
+
+@media (max-width: 700px) {
+  footer ul {
+    width: 100%;
+    margin: 50px 0;
+  }
+  footer ul:nth-child(2) {
+    margin: 0;
+  }
+  main p {
+    font-size: 15px;
+  }
+  table tr {
+    padding: 10px;
+  }
+  table td {
+    display: block;
+  }
+  #input td:first-child {
+    width: 90%;
+    padding: 0;
+    margin: 10px 0 -10px 5%;
+  }
+  #input input, #input textarea, #input select {
+    width: 90%;
+    margin-left: 5%;
+  }
+  #input p {
+    top: 15px;
+    right: 10%;
+    color: #f00;
+    position: absolute;
+    pointer-events: none;
+    display: none;
+  }
+
+  #preview td {
+    height: auto;
+  }
+  #preview td:first-child {
+    width: 90%;
+    padding: 0;
+    margin-left: 5%;
+    margin-top: 15px;
+  }
+  #preview td:last-child {
+    margin: 0 5%;
+  }
+}
+
+@media (max-width: 600px) {
+  #check, #send, #undo {
+    width: 100%;
+    margin: 20px 0;
+  }
+  #buttons {
+    display: block;
+  }
+}

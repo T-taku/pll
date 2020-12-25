@@ -1,3 +1,81 @@
+<?php
+
+
+$secretKey = '6LfC8BIaAAAAAKKlhy-YrO3uUWpXmVel8nghKJGf';
+$Response = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secretKey.'&response='.$_POST['g-recaptcha-response']);
+$result = json_decode($Response);
+if ($result->success) 
+{
+  $name = $_POST["name"];
+  $mail = $_POST["mail"];
+  $category = $_POST["category"];
+  $content = $_POST["content"];
+  $date = date("Y/m/d/H:i:s");
+  $id = str_pad(mt_rand(0, 999999), 6, 0, STR_PAD_LEFT);
+  $ip = $_SERVER['REMOTE_ADDR'];
+
+
+  // 自動送信
+
+  $to = $mail;
+  $subject = "【 project Little Lindo 】お問い合わせにつきまして";
+  $message = "$name 様
+
+お世話になっております。
+この度はお問い合わせありがとうございました。
+
+送信した内容に関しましては以下の通りです。
+
+|－－－－－　お問い合わせ内容　－－－－－|
+
+お名前: $name
+メールアドレス: $mail
+カテゴリー: $category
+本文: $content
+
+送信日時: $date
+お問い合わせ番号: $id
+
+|－－－－－－－－－－－－－－－－－－－－｜
+
+こちらのメールは自動送信です。こちらのメールアドレスにメールを送信しても返信は返ってきません。
+お問い合わせの補足などにつきましては littlelindo.official@gmail.com に［お問い合わせ番号］とともにお願いします。
+
+【 project Little Lindo 】
+公式サイト: https://littlelindo.jp/
+公式twitter: https://twitter.com/p_LittleLindo";
+  $headers = "From: info@littlelindo.jp";
+  mb_send_mail($to, $subject, $message, $headers);
+
+
+
+
+
+  // しくろ
+
+  $subject = "【 project Little Lindo 】お問い合わせメールが送信されました";
+  $message = "送信された内容は以下の通りです。
+
+|－－－－－　お問い合わせ内容　－－－－－|
+
+お名前: $name
+メールアドレス: $mail
+カテゴリー: $category
+本文: $content
+
+送信日時: $date
+お問い合わせ番号: $id
+送信者IP: $ip
+
+|－－－－－－－－－－－－－－－－－－－－｜";
+  $headers = "From: info@littlelindo.jp";
+  mb_send_mail("littlelindo.official@gmail.com", $subject, $message, $headers);
+}
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="ja" dir="ltr">
 
@@ -7,8 +85,8 @@
   <meta name="description" content="YouTubeを主体とし様々なメディアから世界にバーチャル(仮想的) × エンターテインメントを発信する「project Little Lindo」。若き精鋭のクリエイター達が偶像に命を吹き込み、それらを観測する価値を見出している。">
   <meta property="og:image" content="https://replyinfo.jp/pll/img/icon.png" />
   <link rel="apple-touch-icon" sizes="60x60" href="img/logo.jpg">
-  <title>Contact & Join | project Little Lindo</title>
-  <link rel="stylesheet" href="stylesheet.css" />
+  <title>送信完了 | project Little Lindo</title>
+  <link rel="stylesheet" href="mail.css" />
   <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:300" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
@@ -25,22 +103,7 @@
       h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
     })(document);
   </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-164968089-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-164968089-1');
-  </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script type="text/javascript">
-    var onloadCallback = function() {
-      grecaptcha.render('html_element', {
-         'sitekey' : '6LfC8BIaAAAAAF7E1cqix6GrIv61g0XnikDmA2ai'
-      });
-    };
-    </script>
-    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
 </head>
 
 <body style="margin: 0px; padding: 0px;">
@@ -76,73 +139,13 @@
     <li><a href="https://www.youtube.com/channel/UCwK8ctwBwUycT4UmRGGojtQ" target="_blank">YouTube</a></li>
   </ul>
   <main>
-    <h1>Contact & Join</h1>
-    <p>企業の方、案件の相談などはこちらのフォームをお使いください。<br>お問い合わせの際は<span style="font-weight: bold;">プライバシーポリシーをよく読み</span>同意してから送信してください。<br><br>送信後、当サイトから自動返信メールが送信されます。届かない場合迷惑フォルダ等に振り分けられている可能性があるので全てのメールを確認して下さい。<br>それでも届いていない場合入力したメールアドレスが間違っている可能性があるので、お手数ですが再度送信をお願いします。</p>
-    <form action="mail.php" method="POST" onsubmit="aaa(e);">
-      <table id="preview">
-        <caption>以下の内容でお問い合わせを送信します。<br>記述ミス、メールアドレスの誤りがないのを確認したら下の<span>「送信」</span>を押してください。<br>修正が必要な場合は<span>「修正」</span>から修正が可能です。</caption>
-        <tr id="name">
-          <td>お名前</td>
-          <td id="prevName"></td>
-        </tr>
-        <tr id="mail">
-          <td>メールアドレス</td>
-          <td id="prevMail"></td>
-        </tr>
-        <tr id="category">
-          <td>カテゴリー</td>
-          <td id="prevCategory"></td>
-        </tr>
-        <tr id="content">
-          <td>本文</td>
-          <td id="prevContent"></td>
-        </tr>
-      </table>
-      <div id="confirmButtons">
-        <div id="html_element" data-callback="recaptchaCallback"></div>
-        <p style="text-align: center; margin-top: 0;">認証をしてから送信してください。</p>
-        <style>
-          #html_element {
-            margin-left: calc(50% - 150px);
-            margin-top: 30px;
-          }
-        </style>
-        <div id="buttons">
-          <p id="undo" onclick="undo();">修正</p>
-          <button id="send" disabled>送信</button>
-        </div>
-      </div>
-      <table id="input">
-        <tr>
-          <td><span>お名前</span></td>
-          <td><input type="text" id="inputName" name="name"><p class="empty">入力必須項目です</p></td>
-        </tr>
-        <tr>
-          <td><span>メールアドレス</span></td>
-          <td><input type="text" id="inputMail" name="mail"><p class="empty">入力必須項目です</p><p class="injustice-mail">不正な形式です。</p></td>
-        </tr>
-        <tr>
-          <td><span>カテゴリー</span></td>
-          <td style="padding-top: 10px;">
-            ※現在Vtuberは募集しておりません。
-            <br><label>
-              <select name="category" id="inputCategory">
-                <option value="案件に関する問い合わせ">案件に関するお問い合わせ</option>
-                <option value="グッズに関するお問い合わせ">グッズに関するお問い合わせ</option>
-                <option value="Creator応募に関するお問い合わせ">Creator応募に関するお問い合わせ</option>
-                <option value="その他のお問い合わせ">その他のお問い合わせ</option>
-              </select>
-            </label>
-          </td>
-        </tr>
-        <tr>
-          <td><span>本文</span></td>
-          <td><textarea name="content" id="inputContent" cols="30" rows="10"></textarea><p class="empty">入力必須項目です</p></td>
-        </tr>
-      </table>
-      <p id="confirm"><a href="https://littlelindo.jp/privacy-policy/" target="_blank">プライバシーポリシー</a>(別タブで開きます)</p>
-    </form>
-    <p onclick="check();" id="check">入力内容を確認</p>
+    <h1>送信完了</h1>
+    <p>お問い合わせメールを送信しました。</p>
+    <div id="mainLinks">
+      <a href="https://littlelindo.jp">トップページに戻る</a>
+      <a href="https://twitter.com/p_LittleLindo">Twitter</a>
+      <a href="https://www.youtube.com/channel/UCwK8ctwBwUycT4UmRGGojtQ">YouTube</a>
+    </div>
   </main>
   <footer>
     <div><img src="img/logo2.png" alt=""></div>
@@ -231,69 +234,6 @@
       $("#button").removeClass("active");
       $("#back").hide();
       $("#mobile").hide();
-    });
-    $("#input input, #input textarea").click(function() {
-      $(this).nextAll("p").fadeOut(100);
-    });
-    function check() {
-      var scroll = "";
-      if ($("#inputContent").val() === "") {
-        scroll = "#inputContent";
-        $("#inputContent").nextAll(".empty").show();
-      }
-      if ($("#inputMail").val() === "") {
-        scroll = "#inputMail";
-        $("#inputMail").nextAll(".empty").show();
-      }
-      if ($("#inputMail").val() != "" && !$("#inputMail").val().match(/^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}\.[A-Za-z0-9]{1,}$/)) {
-        scroll = "#inputMail";
-        $("#inputMail").nextAll(".injustice-mail").show();
-      }
-      if ($("#inputName").val() === "") {
-        scroll = "#inputName";
-        $("#inputName").nextAll(".empty").show();
-      }
-      if (scroll != "") {
-        anime.timeline().add({
-          targets: "html, body",
-          scrollTop: $(scroll).offset().top - 100,
-          duration: 1000,
-          easing: "easeInOutQuart",
-        });
-      } else {
-        $("#input, #preview, #confirmButtons, #confirm, #check").toggle();
-        anime.timeline().add({
-          targets: "html, body",
-          scrollTop: 0,
-          duration: 1000,
-          easing: "easeInOutQuart",
-        });
-        $("#prevName").text($("#inputName").val());
-        $("#prevMail").text($("#inputMail").val());
-        $("#prevCategory").text($("#inputCategory").val());
-        var content = $("#inputContent").val();
-        content.replace(/\n/, "<br>");
-        $("#prevContent").text(content);
-      };
-    };
-    function undo() {
-      $("#input, #preview, #confirmButtons, #confirm, #check").toggle();
-      anime.timeline().add({
-        targets: "html, body",
-        scrollTop: 0,
-        duration: 1000,
-        easing: "easeInOutQuart",
-      });
-    }
-    function recaptchaCallback() {
-      $("#send").removeAttr("disabled")
-    }
-    $("#inputCategory").change(function() {
-      if ((this).value == "Creator応募に関するお問い合わせ") {
-        $("#inputContent").attr("placeholder", "得意分野、実績、Twitterのアカウントなどがあれば記述してください。");
-      } else {
-        $("#inputContent").attr("placeholder", "");
-      }
     });
   </script>
 </body>
